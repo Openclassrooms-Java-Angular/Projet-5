@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "username": "john",
+    "firstName": "John",
+    "lastName": "Doe",
+    "admin": true,
+    "token": "fake-token",
+    "type": "Bearer"
+  },
+  {
+    "id": 2,
+    "username": "jane",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "admin": false,
+    "token": "fake-token-2",
+    "type": "Bearer"
+  }
+]

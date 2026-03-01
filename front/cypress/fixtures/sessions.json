@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "name": "Yoga débutant",
+        "description": "Cours de yoga débutant",
+        "date": "2026-03-11T13:00:00.000Z",
+        "teacher_id": 1,
+        "users": [
+            1,
+            2
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Yoga avancé",
+        "description": "Cours de yoga avancé",
+        "date": "2026-03-14T15:00:00.000Z",
+        "teacher_id": 2,
+        "users": []
+    }
+]
