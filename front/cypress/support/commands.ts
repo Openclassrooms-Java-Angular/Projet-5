@@ -41,3 +41,58 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (user: {
+    email: string;
+    password: string;
+    admin?: boolean;
+}) => {
+
+    cy.visit('/login')
+
+    cy.intercept('POST', '/api/auth/login', {
+        body: {
+            id: 1,
+            username: 'userName',
+            firstName: 'firstName',
+            lastName: 'lastName',
+            admin: user.admin ?? false
+        },
+    }).as('login')
+
+    cy.intercept(
+        {
+            method: 'GET',
+            url: '/api/session',
+        },
+        { fixture: 'sessions.json' }
+    ).as('getSessions')
+
+    cy.intercept(
+        {
+            method: 'GET',
+            url: '/api/teacher',
+        },
+        { fixture: 'teachers.json' }
+    ).as('getTeachers')
+
+    cy.get('input[formControlName=email]').type(user.email)
+    cy.get('input[formControlName=password]').type(`${user.password}{enter}{enter}`)
+
+    cy.wait('@login')
+    cy.wait('@getSessions')
+
+    cy.url().should('include', '/sessions')
+})
+
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            login(user: {
+                email: string;
+                password: string;
+                admin?: boolean;
+            }): Chainable<void>;
+        }
+    }
+}
