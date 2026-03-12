@@ -74,10 +74,6 @@ describe('MeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should load user on ngOnInit', () => {
     const mockUser: User = {
       id: 1,

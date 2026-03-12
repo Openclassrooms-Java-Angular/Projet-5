@@ -112,6 +112,8 @@ http://localhost:4200
 
 ### ✅ Tests Back-End (Spring Boot)
 
+#### Tests unitaires et d'intégration avec JUnit
+
 Depuis le dossier `back/` :
 ```
 mvn clean test
@@ -124,7 +126,7 @@ back/target/site/jacoco/index.html
 
 ### ✅ Tests Front-End (Angular)
 
-#### Tests unitaires avec Jest
+#### Tests unitaires et d'intégration avec Jest
 
 Depuis le dossier `front/` :
 ```

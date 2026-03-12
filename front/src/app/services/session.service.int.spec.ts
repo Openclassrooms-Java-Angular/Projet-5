@@ -1,19 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 import { expect } from '@jest/globals';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { SessionService } from './session.service';
 import { SessionInformation } from '../interfaces/sessionInformation.interface';
 
-describe('SessionService', () => {
+describe('SessionService (intégration)', () => {
   let service: SessionService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [SessionService]
+    });
+
     service = TestBed.inject(SessionService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('logIn doit mettre à jour sessionInformation, isLogged et émettre true', (done) => {

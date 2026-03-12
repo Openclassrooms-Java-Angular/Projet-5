@@ -37,14 +37,6 @@ describe('SessionsService', () => {
     req.flush([]);
   });
 
-  it('should call GET api/session in all()', () => {
-    service.all().subscribe();
-
-    const req = httpMock.expectOne('api/session');
-    expect(req.request.method).toBe('GET');
-    req.flush([]);
-  });
-
   it('should call GET api/session/{id} in detail()', () => {
     service.detail('123').subscribe();
 

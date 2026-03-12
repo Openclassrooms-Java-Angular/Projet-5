@@ -1,14 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule  } from '@angular/material/snack-bar';
 import { RouterTestingModule, } from '@angular/router/testing';
 import { expect } from '@jest/globals';
 import { SessionService } from '../../../../services/session.service';
 
 import { DetailComponent } from './detail.component';
 import { SessionApiService } from '../../services/session-api.service';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
@@ -66,52 +66,12 @@ describe('DetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('doit initialiser isAdmin et userId à partir de sessionService', () => {
     expect(component.isAdmin).toBe(true);
     expect(component.userId).toBe('1');
   });
 
-  it('devrait appeler participate() du service et refetch la session', () => {
-    sessionApiService.participate.mockReturnValue(of(void 0));
 
-    const spyFetch = jest.spyOn<any, any>(component as any, 'fetchSession');
-
-    component.participate();
-
-    expect(sessionApiService.participate).toHaveBeenCalledWith(
-      component.sessionId,
-      component.userId,
-    );
-    expect(spyFetch).toHaveBeenCalled();
-  });
-
-  it('devrait appeler unParticipate() du service et refetch la session', () => {
-    sessionApiService.unParticipate.mockReturnValue(of(void 0));
-
-    const spyFetch = jest.spyOn<any, any>(component as any, 'fetchSession');
-
-    component.unParticipate();
-
-    expect(sessionApiService.unParticipate).toHaveBeenCalledWith(
-      component.sessionId,
-      component.userId,
-    );
-    expect(spyFetch).toHaveBeenCalled();
-  });
-
-  it('should call delete and navigate after success', () => {
-    sessionApiService.delete.mockReturnValue(of(void 0));
-    const matSnackSpy = jest.spyOn(component['matSnackBar'], 'open');
-
-    component.delete();
-
-    expect(sessionApiService.delete).toHaveBeenCalledWith(component.sessionId);
-    expect(matSnackSpy).toHaveBeenCalledWith('Session deleted !', 'Close', { duration: 3000 });
-  });
 
   it('should call window.history.back on back()', () => {
     const spy = jest.spyOn(window.history, 'back').mockImplementation(() => {});

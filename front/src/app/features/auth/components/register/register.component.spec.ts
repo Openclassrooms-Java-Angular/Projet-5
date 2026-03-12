@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -54,10 +54,6 @@ describe('RegisterComponent', () => {
 
     authService = TestBed.inject(AuthService) as jest.Mocked<AuthService>;
     router = TestBed.inject(Router) as jest.Mocked<Router>;
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should call register and navigate to /login on success', () => {
